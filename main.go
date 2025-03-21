@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	test := "()(()"
+	test := "()"
 	fmt.Println(leetcode.LongestValidParentheses(test))
 }
