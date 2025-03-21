@@ -1,5 +1,11 @@
 package main
 
+import (
+	leetcode "AlGoRythms/leetcode_problems/dp"
+	"fmt"
+)
+
 func main() {
-	return 1
+	test := "()(()"
+	fmt.Println(leetcode.LongestValidParentheses(test))
 }
