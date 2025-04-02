@@ -1,5 +1,7 @@
 package utils
 
+import "fmt"
+
 type Stack[T any] struct {
 	items []T
 }
@@ -29,4 +31,12 @@ func (s *Stack[T]) IsEmpty() bool {
 
 func (s *Stack[T]) GetSize() int {
 	return len(s.items)
+}
+
+func (s *Stack[T]) Print() {
+	for _, val := range s.items {
+		fmt.Printf("%v ", val)
+	}
+
+	fmt.Printf("Top\n")
 }
