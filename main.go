@@ -1,13 +1,20 @@
 package main
 
 import (
-	leetcode "AlGoRythms/leetcode_problems/matrix"
 	"fmt"
+	"unicode"
 )
 
-func main() {
-	test := [][]int{
-		{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25},
+func stringToInt(s string) [26]int {
+	var res [26]int
+
+	for _, val := range s {
+		res[int(unicode.ToUpper(val)-'A')]++
 	}
-	fmt.Println(leetcode.SearchMatrix(test, 19))
+
+	return res
+}
+
+func main() {
+	fmt.Println(stringToInt("test"))
 }
