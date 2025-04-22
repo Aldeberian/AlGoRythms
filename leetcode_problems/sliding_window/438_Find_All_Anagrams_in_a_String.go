@@ -1,7 +1,6 @@
 package leetcode
 
 import (
-	"fmt"
 	"unicode"
 )
 
@@ -18,6 +17,9 @@ func stringToInt(s string) [26]int {
 }
 
 func findAnagrams(s string, p string) []int {
+	if len(s) < len(p) {
+		return []int{}
+	}
 	arrayP := stringToInt(p)
 	startArray := stringToInt(s[0:len(p)])
 	res := []int{}
@@ -31,9 +33,8 @@ func findAnagrams(s string, p string) []int {
 		startArray[int(unicode.ToUpper(rune(s[i]))-'A')]++
 
 		if arrayP == startArray {
-			res = append(res, 0)
+			res = append(res, i-len(p)+1)
 		}
-		fmt.Println(startArray)
 	}
 
 	return res

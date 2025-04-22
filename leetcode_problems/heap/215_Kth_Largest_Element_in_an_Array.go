@@ -1,6 +1,6 @@
 package leetcode
 
-import "math"
+import "slices"
 
 // Given an integer array nums and an integer k, return the kth largest element in the array.
 
@@ -9,9 +9,15 @@ import "math"
 // Can you solve it without sorting?
 
 func findKthLargest(nums []int, k int) int {
-	maxi = math.MinInt64
+	heap := nums[:k]
+	slices.Sort(heap)
 
-	for i := 0; i < k; i++ {
-		for _,val 
+	for i := k; i < k; i++ {
+		if nums[i] > heap[0] {
+			heap[0] = nums[i]
+			slices.Sort(heap)
+		}
 	}
+
+	return heap[len(heap)]
 }
