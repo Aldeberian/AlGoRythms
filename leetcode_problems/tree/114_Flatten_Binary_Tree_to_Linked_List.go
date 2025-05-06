@@ -6,9 +6,7 @@ package leetcode
 //     The "linked list" should be in the same order as a pre-order traversal of the binary tree.
 
 func flatten(root *TreeNode) {
-	nodes := make(map[int]*TreeNode)
-	min := 0
-	max := 0
+	nodes := []*TreeNode{}
 
 	var rec func(root *TreeNode)
 
@@ -16,21 +14,19 @@ func flatten(root *TreeNode) {
 		if root == nil {
 			return
 		}
-		nodes[root.Val] = root
 
-		max = Max(root.Val, max)
-		min = Min(root.Val, min)
+		nodes = append(nodes, root)
 
 		rec(root.Left)
 		rec(root.Right)
 	}
 
-	retour := &TreeNode{Right: nodes[min]}
-	curr := retour.Right
-	for i := min + 1; i <= max; i++ {
+	rec(root)
+
+	curr := root
+	for i := 1; i < len(nodes); i++ {
 		curr.Right = nodes[i]
+		curr.Left = nil
 		curr = curr.Right
 	}
-
-	return retour.Right
 }
