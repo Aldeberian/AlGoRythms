@@ -12,7 +12,12 @@ func subarraySum(nums []int, k int) int {
 	for _, val := range nums {
 		count += val
 		hm[count]++
-		res += hm[count-k]
+		if k != 0 {
+			res += hm[count-k]
+		}
+		if k == count {
+			res += hm[count]
+		}
 	}
 
 	return res
