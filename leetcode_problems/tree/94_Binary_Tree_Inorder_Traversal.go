@@ -14,5 +14,20 @@ package leetcode
  * }
  */
 func inorderTraversal(root *TreeNode) []int {
+	res := []int{}
 
+	var rec func(node *TreeNode)
+
+	rec = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+
+		rec(node.Left)
+		res = append(res, node.Val)
+		rec(node.Right)
+	}
+	rec(root)
+
+	return res
 }
