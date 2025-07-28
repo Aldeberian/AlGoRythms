@@ -2,19 +2,21 @@ package main
 
 import (
 	"fmt"
-	"unicode"
+	"os"
+	"strings"
 )
 
-func stringToInt(s string) [26]int {
-	var res [26]int
-
-	for _, val := range s {
-		res[int(unicode.ToUpper(val)-'A')]++
-	}
-
-	return res
-}
-
 func main() {
-	fmt.Println(stringToInt("test"))
+	if len(os.Args) == 2 {
+		name := strings.ReplaceAll(os.Args[1], " ", "_") + ".go"
+		content := "package leetcode\n"
+
+		err := os.WriteFile(name, []byte(content), 0644)
+		if err != nil {
+			fmt.Println("Erreur :", err)
+			return
+		}
+
+		fmt.Println("Fichier créé :", name)
+	}
 }
