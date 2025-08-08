@@ -6,6 +6,7 @@ package leetcode
 
 func maxSlidingWindow(nums []int, k int) []int {
 	queue := []int{}
+	maxi := 0
 
 	for i := 0; i < k; i++ {
 		maxi = max(maxi, nums[i])
